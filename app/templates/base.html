@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Wants to Be a Millionaire</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 0 auto; padding: 1rem; background: #111; color: #fff; }
+    a { color: #ffd54f; }
+    nav { margin-bottom: 1rem; display: flex; gap: 1rem; }
+    .card { background: #1d1d1d; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+    input, select, button, textarea { width: 100%; margin: 0.25rem 0 0.75rem; padding: 0.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    .flash-error { color: #ff8a80; }
+    .flash-success { color: #b9f6ca; }
+  </style>
+</head>
+<body>
+  <h1>Who Wants to Be a Millionaire</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('new_question_set') }}">Create Question Set</a>
+      <a href="{{ url_for('new_game') }}">New Game</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+  </nav>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, msg in messages %}
+      <p class="flash-{{ category }}">{{ msg }}</p>
+    {% endfor %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

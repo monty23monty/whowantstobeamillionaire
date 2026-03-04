@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Create Question Set (15 Questions Required)</h2>
+  <form method="post">
+    <label>Set Title</label>
+    <input name="title" required>
+
+    {% for i in range(1, 16) %}
+      <div class="card">
+        <h3>Question {{ i }}</h3>
+        <label>Question Text</label>
+        <textarea name="q{{ i }}_text" required></textarea>
+        <div class="grid">
+          <div>
+            <label>Option A</label>
+            <input name="q{{ i }}_a" required>
+          </div>
+          <div>
+            <label>Option B</label>
+            <input name="q{{ i }}_b" required>
+          </div>
+          <div>
+            <label>Option C</label>
+            <input name="q{{ i }}_c" required>
+          </div>
+          <div>
+            <label>Option D</label>
+            <input name="q{{ i }}_d" required>
+          </div>
+        </div>
+        <label>Correct Option (A/B/C/D)</label>
+        <select name="q{{ i }}_correct" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+    {% endfor %}
+
+    <button type="submit">Save Question Set</button>
+  </form>
+</div>
+{% endblock %}

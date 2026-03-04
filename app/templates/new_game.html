@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Start a New Game</h2>
+  <form method="post">
+    <label>Select Question Set</label>
+    <select name="question_set_id" required>
+      {% for qset in question_sets %}
+        <option value="{{ qset.id }}">{{ qset.title }} ({{ qset.questions|length }} questions)</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Start Game</button>
+  </form>
+</div>
+{% endblock %}

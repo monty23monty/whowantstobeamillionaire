@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Game #{{ game.id }} - Question {{ game.current_question }} of 15</h2>
+  <p><strong>Current prize:</strong> ${{ prize }}</p>
+  <p><strong>Guaranteed winnings if wrong now:</strong> ${{ game.checkpoint_winnings() }}</p>
+  <h3>{{ question.text }}</h3>
+  <form method="post">
+    <button name="choice" value="A">A: {{ question.option_a }}</button>
+    <button name="choice" value="B">B: {{ question.option_b }}</button>
+    <button name="choice" value="C">C: {{ question.option_c }}</button>
+    <button name="choice" value="D">D: {{ question.option_d }}</button>
+  </form>
+</div>
+{% endblock %}

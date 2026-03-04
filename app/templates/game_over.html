@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Game Over</h2>
+  {% if game.status == 'won' %}
+    <p>🎉 You won the million! Final winnings: ${{ game.winnings }}</p>
+  {% else %}
+    <p>Better luck next time. Final winnings: ${{ game.winnings }}</p>
+  {% endif %}
+  <a href="{{ url_for('new_game') }}">Play again</a>
+</div>
+{% endblock %}

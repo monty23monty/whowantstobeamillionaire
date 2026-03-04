@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Welcome to the game</h2>
+  <p>Build custom 15-question sets, start games, and climb to $1,000,000.</p>
+</div>
+<div class="card">
+  <h3>Available Question Sets</h3>
+  <ul>
+    {% for qset in question_sets %}
+      <li>{{ qset.title }} ({{ qset.questions|length }} questions) by {{ qset.creator.username }}</li>
+    {% else %}
+      <li>No question sets yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
