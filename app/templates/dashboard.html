@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Your Question Sets</h2>
+  <ul>
+    {% for qset in my_sets %}
+      <li>{{ qset.title }} ({{ qset.questions|length }} questions)</li>
+    {% else %}
+      <li>You have not created a question set yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="card">
+  <h2>Your Games</h2>
+  <ul>
+    {% for game in my_games %}
+      <li><a href="{{ url_for('play_game', game_id=game.id) }}">Game #{{ game.id }}</a> - {{ game.status }} - ${{ game.winnings }}</li>
+    {% else %}
+      <li>No games created.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
